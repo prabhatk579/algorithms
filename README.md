@@ -1,4 +1,4 @@
-# **Algorithms**
+# <h1 align = 'center'><b> Algorithms </b></h1>
 
 This repository consists of some basic and important algorithms in  Computer Science.
 
