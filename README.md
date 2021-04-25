@@ -52,3 +52,6 @@ This repository consists of some basic and important algorithms in  Computer Sci
 * Graph Coloring Problem
 * Sum of Subsets Problem
 ```
+
+# <h2 align = 'center'><b> Handwritten Note's </b></h2>
+
