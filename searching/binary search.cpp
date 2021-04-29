@@ -48,8 +48,8 @@ int main()
         arr[i] = s;
     }
     sort(arr, arr + n);
-    int low = arr[0];
-    int high = arr[n-1];
+    int low = 0;
+    int high = n-1;
     Solution ob;
     int a = -1, b = -1;
     for(int i = 0; i < n; i++)
