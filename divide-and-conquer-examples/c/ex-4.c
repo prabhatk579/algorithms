@@ -1,6 +1,6 @@
 /*
-    Given an array of n elements. Find whether there are two elements in the array such that
-    their sum is equal to given element K or not? in O(nlogn) time.
+    Given an array of n elements, give an algorithm for checking whether there are any
+    duplicate elements in the array or not? in O(nlogn) time.
 */
 
 #include <stdio.h>
@@ -48,28 +48,22 @@ void mergeSort(int a[], int l, int h){
         SimpleMerge(a, l, mid, h);
     }
 }
-int hasArrayTwoCandidates(int a[], int n, int sum){
-    int l, h; 
-    mergeSort(a, 0, n - 1);
-    l = 0;
-    h = n - 1;
-    while(l < h){
-        if (a[l] + a[h] == sum)
-            return 1;
-        else if(a[l] + a[h] < sum)
-            l++;
-        else // if(a[l] + a[h] > sum)
-            h--;
+int DuplicateCheck(int a[], int l , int h){
+    int start = 0, count = 0, j = 0;
+    mergeSort(a,l,h); 
+    for(int i = l; i <= h-1; i++){
+        if(a[i]!=a[start]){
+            printf("%d has occurred %d times \n",a[start],count);
+            count=j+1;
+            start=i;
+        }
+        else count++;
     }
-    return 0;
+    printf("%d has occurred %d times \n",a[start],count);
 }
 int main(){
-    int a[] = {14, 21, 7, 5, -4, 2};
-    int x = 12;
-    int n = sizeof(a) / sizeof(a[0]);;
-    if(hasArrayTwoCandidates(a, n, x))
-        printf("Array has two elements with given sum");
-    else
-        printf("Array doesn't have two elements with given sum");
+    int a[] = {1,1,1,3,4,5,6,7};
+    int n = sizeof(a)/sizeof(a[0]);
+    DuplicateCheck(a,0,n);
     return 0;
 }

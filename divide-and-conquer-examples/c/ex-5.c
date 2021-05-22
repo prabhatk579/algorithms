@@ -1,6 +1,6 @@
 /*
-    Given an array of n elements. Find whether there are two elements in the array such that
-    their sum is equal to given element K or not? in O(nlogn) time.
+    Given an array of n elements, give an algorithm for finding the element which appears
+    maximum number of times in the array in O(nlogn) time.
 */
 
 #include <stdio.h>
@@ -48,28 +48,30 @@ void mergeSort(int a[], int l, int h){
         SimpleMerge(a, l, mid, h);
     }
 }
-int hasArrayTwoCandidates(int a[], int n, int sum){
-    int l, h; 
-    mergeSort(a, 0, n - 1);
-    l = 0;
-    h = n - 1;
-    while(l < h){
-        if (a[l] + a[h] == sum)
-            return 1;
-        else if(a[l] + a[h] < sum)
-            l++;
-        else // if(a[l] + a[h] > sum)
-            h--;
+int MaxCount(int a[], int n){
+    int count = 1, maxCount = 1, freq = a[0];
+    mergeSort(a, 0, n);
+    for(int i = 1; i < n; i++){
+        if(a[i-1] == a[i])
+            count++;
+        else{
+            if(count > maxCount){
+                maxCount = count;
+                freq = a[i-1];
+            }
+            count = 1;
+        }
     }
-    return 0;
+    if(count > maxCount){
+        maxCount = count;
+        freq = a[n-1];
+    }
+    return freq;
 }
 int main(){
-    int a[] = {14, 21, 7, 5, -4, 2};
-    int x = 12;
-    int n = sizeof(a) / sizeof(a[0]);;
-    if(hasArrayTwoCandidates(a, n, x))
-        printf("Array has two elements with given sum");
-    else
-        printf("Array doesn't have two elements with given sum");
+    int a[] = {1,1,1,8,7,3,2,5,4,2,10,3,3,3,4,5,6};
+    int n = sizeof(a) / sizeof(a[0]);
+    int max = MaxCount(a,n);
+    printf("The maximum appearing element in the array is: %d", max);
     return 0;
 }
